@@ -2,7 +2,7 @@ name: Deploy to Firebase Hosting on PR
 on: pull_request
 permissions:
   checks: write
-  contents: Read and write
+  contents: read
   pull-requests: write
 jobs:
   build_and_preview:
@@ -13,6 +13,6 @@ jobs:
       - run: npm ci && npm run build
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
-          repoToken: ${{ secrets.PERSONAL_ACCESS_TOKEN }}  # Fixed issue
+          repoToken: ${{ secrets.GITHUB_TOKEN }}  # Use GitHub-provided token
           firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_REACT_FIREBASE_DEPLOYMEN_E0055 }}
           projectId: react-firebase-deploymen-e0055
